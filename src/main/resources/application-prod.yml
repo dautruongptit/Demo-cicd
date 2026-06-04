@@ -20,9 +20,9 @@ spring:
 management:
   endpoints:
     web:
-      exposure:
-        include: health,info,metrics   # giới hạn endpoint public
       base-path: /actuator
+      exposure:
+        include: health,info,metrics
   endpoint:
     health:
       show-details: always                # ẩn chi tiết với anonymous
