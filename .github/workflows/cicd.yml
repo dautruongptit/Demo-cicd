@@ -157,7 +157,7 @@ jobs:
             echo "🚀 Khởi động..."
             docker compose up -d demo-cicd
 
-           echo "⏳ Chờ app sẵn sàng..."
+            echo "⏳ Chờ app sẵn sàng..."
             MAX_WAIT=60
             WAITED=0
             HTTP_STATUS="000"
@@ -215,5 +215,5 @@ jobs:
             🌿 `${{ github.ref_name }}`
             👤 ${{ github.actor }}
             💬 ${{ github.event.head_commit.message }}
-            🔁 Hệ thống đã rollback về image trước đó
+            🔁 Hệ thống đã rollback về image trước  đó
             🔗 [Xem log lỗi](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) 
