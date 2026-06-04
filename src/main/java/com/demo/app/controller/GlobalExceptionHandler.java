@@ -34,15 +34,4 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ApiResponse.error("Internal server error: " + ex.getMessage()));
     }
-
-    @ExceptionHandler(NoResourceFoundException.class)
-    public ResponseEntity<ApiResponse<?>> handleNoResourceFound(
-            NoResourceFoundException ex, HttpServletRequest request) {
-        String path = request.getRequestURI();
-        if (path.startsWith("/actuator")) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(ApiResponse.error("Resource not found: " + ex.getMessage()));
-    }
 }
