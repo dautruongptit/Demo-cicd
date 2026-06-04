@@ -1,0 +1,26 @@
+# Env - tuyệt đối không commit
+.env
+.env.local
+.env.production
+
+# Maven
+target/
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Logs
+*.log
+logs/
+/data/
+
+# OS
+.DS_Store
+Thumbs.db

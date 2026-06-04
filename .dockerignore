@@ -1,9 +1,24 @@
-target/
-.git/
+# Git
+.git
 .gitignore
-*.md
-.mvn/
-mvnw
-mvnw.cmd
-.idea/
+
+# IDE
+.idea
 *.iml
+*.iws
+
+# Maven build output
+target/
+
+# Env files — không copy vào image
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Docker files (không cần trong image)
+docker-compose.yml
+Dockerfile
