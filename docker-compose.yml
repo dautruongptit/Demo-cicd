@@ -1,7 +1,6 @@
-version: '3.8'
 services:
   demo-app:
-    image: ${IMAGE_NAME}:latest
+    image: ${IMAGE_NAME}
     container_name: demo-app
     ports:
       - "8080:8080"
@@ -25,7 +24,6 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: mysql
     ports:
       - "3306:3306"
     env_file:
