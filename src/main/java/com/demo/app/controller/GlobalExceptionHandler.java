@@ -35,32 +35,14 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error("Internal server error: " + ex.getMessage()));
     }
 
-    // Thêm annotation này để không xử lý các path của Actuator
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ApiResponse<?>> handleNoResourceFound(
             NoResourceFoundException ex, HttpServletRequest request) {
-
-        // Bỏ qua actuator paths — để Spring tự xử lý
         String path = request.getRequestURI();
         if (path.startsWith("/actuator")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error("Resource not found: " + ex.getMessage()));
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiResponse<?>> handleGeneral(
-            Exception ex, HttpServletRequest request) {
-
-        String path = request.getRequestURI();
-        if (path.startsWith("/actuator")) {
-            // Không bắt lỗi actuator — để Spring Boot tự xử lý
-            throw new RuntimeException(ex);
-        }
-
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error("Internal server error: " + ex.getMessage()));
     }
 }
