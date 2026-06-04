@@ -1,4 +1,4 @@
-name: CI/CD Pipeline — demo-app
+name: CI/CD Pipeline — demo-cicd
 
 on:
   push:
