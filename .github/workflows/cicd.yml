@@ -24,10 +24,10 @@ jobs:
           cache: maven
 
       - name: Build
-        run: ./mvnw clean package -DskipTests
+        run: mvn clean package -DskipTests
 
       - name: Test
-        run: ./mvnw test
+        run: mvn test
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
