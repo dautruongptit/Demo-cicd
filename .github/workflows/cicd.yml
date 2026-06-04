@@ -158,16 +158,16 @@ jobs:
             docker compose up -d demo-cicd
 
            echo "⏳ Chờ app sẵn sàng..."
-                MAX_WAIT=60
-                WAITED=0
-                HTTP_STATUS="000"
+            MAX_WAIT=60
+            WAITED=0
+            HTTP_STATUS="000"
 
-                while [ "$HTTP_STATUS" != "200" ] && [ $WAITED -lt $MAX_WAIT ]; do
-                  sleep 5
-                  WAITED=$((WAITED + 5))
-                  HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-                    http://localhost:8080/actuator/health || echo "000")
-                  echo "⏱ ${WAITED}s — HTTP $HTTP_STATUS"
+            while [ "$HTTP_STATUS" != "200" ] && [ $WAITED -lt $MAX_WAIT ]; do
+              sleep 5
+              WAITED=$((WAITED + 5))
+              HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+                http://localhost:8080/actuator/health || echo "000")
+              echo "⏱ ${WAITED}s — HTTP $HTTP_STATUS"
             done
             echo "HTTP Status: $HTTP_STATUS"
 
