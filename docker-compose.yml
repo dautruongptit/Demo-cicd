@@ -1,7 +1,7 @@
 services:
-  demo-app:
+  demo-cicd:
     image: ${IMAGE_NAME}
-    container_name: demo-app
+    container_name: demo-cicd
     ports:
       - "8080:8080"
     env_file:
