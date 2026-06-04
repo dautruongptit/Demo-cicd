@@ -155,7 +155,7 @@ jobs:
             sed -i "s|IMAGE_NAME=.*|IMAGE_NAME=$IMAGE_NAME:$GITHUB_SHA|g" .env
 
             echo "🚀 Khởi động..."
-            docker-compose up -d --remove-orphans
+            docker-compose up -d demo-cicd
 
             echo "⏳ Chờ 30s..."
             sleep 30
@@ -169,7 +169,7 @@ jobs:
               echo "❌ Health check thất bại — ROLLBACK về $CURRENT_IMAGE"
               if [ "$CURRENT_IMAGE" != "none" ]; then
                 sed -i "s|IMAGE_NAME=.*|IMAGE_NAME=$CURRENT_IMAGE|g" .env
-                docker-compose up -d --remove-orphans
+                docker-compose up -d demo-cicd
                 echo "⏮️ Rollback thành công"
                 exit 2
               else
