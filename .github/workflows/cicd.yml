@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/demo-app
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/demo-cicd
 
 jobs:
   build:
@@ -116,8 +116,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            mkdir -p ~/apps/demo-app
-            cat > ~/apps/demo-app/.env << EOF
+            mkdir -p ~/apps/demo-cicd
+            cat > ~/apps/demo-cicd/.env << EOF
             SPRING_PROFILES_ACTIVE=prod
             JPA_DDL_AUTO=update
             TZ=Asia/Ho_Chi_Minh
@@ -127,9 +127,9 @@ jobs:
             SPRING_DATASOURCE_USERNAME=root
             SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}
             DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
-            IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/demo-app
+            IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/demo-cicd
             EOF
-            chmod 600 ~/apps/demo-app/.env
+            chmod 600 ~/apps/demo-cicd/.env
 
       - name: SSH Deploy & Auto Rollback
         uses: appleboy/ssh-action@v1.0.3
@@ -141,10 +141,10 @@ jobs:
           envs: GITHUB_SHA,IMAGE_NAME
           script: |
             set -e
-            cd ~/apps/demo-app
+            cd ~/apps/demo-cicd
 
             echo "📌 Lưu image hiện tại..."
-            CURRENT_IMAGE=$(docker inspect demo-app \
+            CURRENT_IMAGE=$(docker inspect demo-cicd \
               --format='{{.Config.Image}}' 2>/dev/null || echo "none")
             echo "Current: $CURRENT_IMAGE"
 
