@@ -10,13 +10,28 @@ spring:
       connection-timeout: 30000
       idle-timeout: 600000
       max-lifetime: 1800000
+      pool-name: HikariPool-demo-app
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_AUTO:none}
     show-sql: false
 
+# ── Actuator prod: chỉ mở health ────────────
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics   # giới hạn endpoint public
+  endpoint:
+    health:
+      show-details: never              # ẩn chi tiết với anonymous
+  server:
+    port: 8081                         # actuator chạy port riêng, không public ra ngoài
+
+# ── Logging prod: ghi file, ít noise ────────
 logging:
   level:
     root: WARN
     com.demo.app: INFO
     org.hibernate.SQL: WARN
+    org.springframework.web: WARN
