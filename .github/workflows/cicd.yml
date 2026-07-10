@@ -123,7 +123,7 @@ jobs:
             TZ=Asia/Ho_Chi_Minh
             MYSQL_ROOT_PASSWORD=${{ secrets.DB_PASSWORD }}
             MYSQL_DATABASE=demo_db
-            SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/demo_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Ho_Chi_Minh
+            SPRING_DATASOURCE_URL=jdbc:mysql://100.102.72.31:3306/event_app?allowPublicKeyRetrieval=true&useSSL=false
             SPRING_DATASOURCE_USERNAME=root
             SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }}
             DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
